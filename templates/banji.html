@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <section class="content">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="box">
+          <div class="box-header">
+            <h3 class="box-title">课程记录</h3>
+            <a href="{% url 'yemiantianjia' %}" class="btn btn-primary pull-right">添加记录</a>
+{#            <form action="" method="get" class="pull-right" style="width: 400px;display: inline-block">#}
+{#              <select name="condition" id="" class="form-control" style="width: 100px;display: inline-block">#}
+{#                <option value="customer__name__contains">姓名</option>#}
+{#                <option value="status">跟进状态</option>#}
+{#              </select>#}
+{#              <input type="text" name="wd" class="form-control" style="width: 200px;display: inline-block">#}
+{#              <button class="btn btn-default">搜索</button>#}
+{#            </form>#}
+            {#          </div>#}
+            {#            <a href="{% url 'addcustomer' %}" class="btn btn-primary pull-right">添加记录</a>#}
+
+            <form action="" method="post"
+                  style="width: 200px;margin-left: 100px;margin-top: -20px;">
+              {% csrf_token %}
+              <select name="action" id="select_id" class="form-control">
+{#                <option value="batch_delete">批量删除</option>#}
+                <option value="ba_create">批量创建学生记录</option>
+                {#                            <option value="batch_reverse_sg">私户转公户</option>#}
+
+              </select>
+              <button class="btn btn-danger" style="margin-left: 200px;margin-top: -40px;vertical-align: 27px">go
+              </button>
+              {#            </form>#}
+              {#            </form>#}
+          </div>
+          <!-- /.box-header -->
+          <div class="box-body">
+            <table id="example2" class="table table-bordered table-hover">
+              <thead>
+              <tr>
+                <th>
+                  <input type="checkbox" id="choose">
+                </th>
+                <th>序号</th>
+                <th>班级</th>
+                <th>节次</th>
+                <th>老师</th>
+                <th>本节课程标题</th>
+                <th>学详</th>
+                <th>操作</th>
+                {#                                <th>已报班级</th>#}
+              </tr>
+              </thead>
+              <tbody>
+              {% for customer in all_obj %}
+                <tr>
+                  <td><input type="checkbox" name="selected_id" value="{{ customer.pk }}"></td>
+                  <td>{{ forloop.counter }}</td>
+                  <td>{{ customer.class_obj }}</td>
+                  <td>{{ customer.day_num }}</td>
+                  <td>{{ customer.teacher }}</td>
+                  <td>{{ customer.course_title }}</td>
+                  <td><a href="{% url 'study_decord' customer.pk %}">学详</a></td>
+                  <td>
+                    <a href="{% url 'banjibianji' customer.pk %}" class="btn btn-warning btn-xs">编辑</a>
+                    <a href="{% url 'banjishanchu' customer.pk %}" class="btn btn-danger btn-xs">删除</a>
+                  </td>
+
+                  {#                                        <td>{{ customer.get_classlist }}</td>#}
+                </tr>
+              {% endfor %}
+
+              </tbody>
+            </table>
+            </form>
+           {{ ret_html|safe }}
+
+          </div>
+        </div>
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+    </div>
+    <!-- /.col -->
+    </div>
+{# #}
+    <!-- /.row -->
+  </section>
+
+
+{#  {{ ret_html|safe }}#}
+
+{% endblock %}
+
+
