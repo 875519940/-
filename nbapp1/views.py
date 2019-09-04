@@ -22,9 +22,9 @@ def index(request):
 
 def register(request):
     if request.method == 'GET':
-        form_obj = form.UserForm()
+        l1 =form.UserForm()
 
-        return render(request, 'register.html', {'form_obj': form_obj})
+        return render(request, 'register.html', {'l1': l1})
     else:
         form_obj = form.UserForm(request.POST)
         if form_obj.is_valid():

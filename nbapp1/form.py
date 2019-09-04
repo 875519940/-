@@ -7,7 +7,7 @@ from django import forms
 from django.forms import widgets
 
 class UserForm(forms.Form):
-    username = forms.CharField(max_length=32, min_length=6, label='用户名',
+    username =forms.CharField(max_length=32, min_length=6, label='用户名',
                                error_messages={'required': '这个字段必须填写!', 'max_length': '最大不能超过32位','min_length': '最小不能低于6位'}, )
     password = forms.CharField(max_length=32, min_length=6, label='密码',
                                error_messages={'required': '这个字段必须填写!', 'max_length': '最大不能超过32位','min_length': '最小不能低于6位'},
